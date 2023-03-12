@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head> <!--Head Data and links CSS pages -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +8,35 @@
     <link rel="stylesheet" href="./assets/css/reset.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
+
 <body>
-    <a class="Button" id="Highscores" href="highscores.html">View Highcores</a>
-    <h1> Brainteaser Quiz</h1>
-    <p>Try to answer the following BLANKBLANK-RELATED questions within the time limit.  Keep in mind that incorrect answers will penalize your score/time by 15 seconds!</p>
-    <button>Start Quiz</button>
-    <script src="./assets/js/script.js"></script>
+    
+    <a class="button" id="highscores" href="highscores.html">View Highscores</a> <!--Button to switch to highscores page-->
+
+    <p id="time-remaining">Time: 0</p> <!--Time remaining buttons set to 0.  Will change when timer starts in JS-->
+
+    <section class="quiz-text"> <!--Section made to reference back in CSS-->
+        
+        <div id="quiz-container"> <!--Div made to reference back in JS-->
+
+            <div id="question-container"></div> <!--Div made to reference back in JS-->
+        
+            <div id="answer-buttons"></div> <!--Div made to reference back in JS-->
+
+        </div>
+            
+        <div id="initialInstructions"> <!--Div made to reference back in JS-->
+
+            <h1> Brainteaser Quiz</h1>
+
+            <p><br>Try to answer the following BLANKBLANK-RELATED questions within the time limit. <br> Keep in mind that incorrect answers will penalize your score/time by 15 seconds!</p>
+
+            <button class ="button" id="startButton">Start Quiz</button> <!--Button Starts Quiz and timer-->
+
+        </div>
+    </section>
+
+
+    <script src="./assets/js/script.js"></script> <!--Links JS-->
 </body>
 </html>
