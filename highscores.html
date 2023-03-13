@@ -12,14 +12,15 @@
 <body>
     <section class="quiz-text"> <!--Section made to reference back in CSS-->
 
-        <h1>Highscores</h1>
-
+        <div class="highscoreTable"> <h1>Highscores</h1><h2 class="lastScore2"></h2>
+        </div>
         <a class="button" href="index.html"><button>Go Back</button></a> <!--Goes back to main quiz start page-->
 
         <button class="button" id="clearHighScores">Clear Highscores</button> <!--Clears highscores in JS-->
 
     </section>
-
-<script src="./assets/js/highscores.js"></script> <!--Links JS-->
+    <!-- <script src="./assets/js/script.mjs"></script> -->
+<script type="module" src="./assets/js/highscores.mjs"></script>
+ <!--Links JS-->
 </body>
 </html>
