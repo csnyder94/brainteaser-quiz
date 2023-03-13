@@ -11,18 +11,19 @@
 
 <body>
     
-    <a class="button" id="highscores" href="highscores.html">View Highscores</a> <!--Button to switch to highscores page-->
+    <a class="button" id="highscores" href="highscores.html">View Highscores</a> <!--Button to switch to highscores page // id to link to css-->
 
     <p id="time-remaining">Time: 0</p> <!--Time remaining buttons set to 0.  Will change when timer starts in JS-->
 
     <section class="quiz-text"> <!--Section made to reference back in CSS-->
-        <div id="score-container"> Score: 0 </div>
+      <div id="score-container"> Score: 0 </div> <!--Div made to reference back in CSS-->
+
         <div id="quiz-container"> <!--Div made to reference back in JS-->
 
             <div id="question-container"></div> <!--Div made to reference back in JS-->
         
             <div id="answer-buttons"></div> <!--Div made to reference back in JS-->
-            <div id="correct-incorrect"></div>
+            <div id="correct-incorrect"></div> <!--made to reference back in JS-->
         </div>
             
         <div id="initialInstructions"> <!--Div made to reference back in JS-->
@@ -35,16 +36,13 @@
 
         </div>
     </section>
-<!-- COME BACK HERE AND FIX THE BELOW. ALSO FIX THE CSS -->
+<!-- Form Made to Submit Name // Reference back in CSS & JS -->
     <form id="nameForm" style="display: none;" >
         <label for="nameInput">Enter your name:</label>
-        <input type="text" id="nameInput" name="name">
-        <a href="highscores.html" class="button2" id="button3">Submit</a>
-      </form>
-      
+        <input type="text" id="nameSubmission"> <!--id="nameInput" name="name">-->
+        <a href="highscores.html" id="submitButton" >Submit</a>
+      </form>      
 
-
-
-    <script type="module" src="./assets/js/script.mjs"></script> <!--Links JS-->
+<script src="./assets/js/script.js"></script> <!--Links JS-->
 </body>
 </html>

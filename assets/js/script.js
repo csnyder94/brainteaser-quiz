@@ -1,42 +1,38 @@
-import {viewHighScore} from "./highscores.mjs";
 var intialInstructions = document.getElementById('initialInstructions')
 var startButton = document.getElementById('startButton')
 var questionContainer = document.getElementById('question-container')
 var answerButtons = document.getElementById('answer-buttons')
 var timeRemainingBox = document.getElementById('time-remaining')
-var timeLeft =60
 var correctIncorrectText = document.getElementById('correct-incorrect')
-var score =0
 var scoreTextBox = document.getElementById('score-container')
 var nameForm = document.getElementById('nameForm')
 var submitName = document.getElementById('submitName')
-var button3 = document.getElementById('button3')
+var submitButton = document.getElementById('submitButton')
+var timeLeft =60
+var score =0
 let shuffledQuestions, currentQuestionIndex, timer
 
-startButton.addEventListener('click', startQuiz)
+startButton.addEventListener('click', startQuiz) //Event Listener starts quiz function on click
 
-function startQuiz() {
-  setScore(score)
-  startButton.classList.add('hide')
-  shuffledQuestions = questions.sort(() => Math.random() - 0.5)
-  currentQuestionIndex = 0
-  questionContainer.classList.remove('hide')
-  answerButtons.classList.remove('hide')
-  timeRemainingBox.classList.remove('hide')
-  setNextQuestion()
-  startTimer()
-  initialInstructions.remove('hide')
-
-}
-function setScore(score) {
-  scoreTextBox.innerText = `Score: ${score}`
-}
-function incrementScore() {
-  score++
-  setScore(score)
+function startQuiz() {  //Function sets initial score to 0, starts timer, hides initial html and displays questions
+  setScore(score);
+  shuffledQuestions = questions.sort(() => Math.random() - 0.5);
+  currentQuestionIndex = 0;
+  setNextQuestion();
+  startTimer();
+  initialInstructions.remove('hide');
 }
 
-function startTimer() {
+function setScore(score) {  //Function sets score to intial score of 0
+  scoreTextBox.innerText = `Score: ${score}`;
+}
+
+function incrementScore() {  //Function increments score by 1 as a question is correct or Boolean true
+  score++;
+  setScore(score);
+}
+
+function startTimer() {  //Function sets parameters for timer
   console.log("startTimer")
   // let timeLeft = 60
   timeRemainingBox.innerText = `Time: ${timeLeft}`
@@ -46,42 +42,39 @@ function startTimer() {
     if (timeLeft === 0) {
       clearInterval(timer)
       endQuiz()
-       
     }
   }, 1000)
 }
 
-function setNextQuestion() {
-  resetState()
-  
-  showQuestion(shuffledQuestions[currentQuestionIndex])
-  
+function setNextQuestion() {  //Function goes to next question
+  resetState();
+  showQuestion(shuffledQuestions[currentQuestionIndex]);
 }
 
-function showQuestion(question) {
-  questionContainer.innerText = question.question
+function showQuestion(question) {  //Function appends answer buttons and listens for which is clicked
+  questionContainer.innerText = question.question  
   question.answers.forEach(answer => {
-    const button = document.createElement('button')
-    button.innerText = answer.text
-    button.classList.add('button')
+    const button = document.createElement('button');
+    button.innerText = answer.text;
+    button.classList.add('button');
     if (answer.correct) {
-      button.dataset.correct = answer.correct
+      button.dataset.correct = answer.correct;
     }
-    button.addEventListener('click', selectAnswer)
-    answerButtons.appendChild(button)
+    button.addEventListener('click', selectAnswer);
+    answerButtons.appendChild(button);
   })
 }
 
-function resetState() {
-  clearStatusClass(document.body)
+function resetState() { //Resets answers to go to next question
+  clearStatusClass(document.body);
   while (answerButtons.firstChild) {
     answerButtons.removeChild(answerButtons.firstChild)
   }
 }
 
-function selectAnswer(e) {
-  const selectedButton = e.target
-  const correct = selectedButton.dataset.correct
+function selectAnswer(e) {  //Function for choosing answers.  A correct answer will display correct.  An incorrect will display incorrect and deduct 10 seconds
+  const selectedButton = e.target;
+  const correct = selectedButton.dataset.correct;
   setStatusClass(document.body, correct)
   Array.from(answerButtons.children).forEach(button => {
     setStatusClass(button, button.dataset.correct)
@@ -92,13 +85,13 @@ function selectAnswer(e) {
       timeLeft -= 10;
       correctIncorrectText.innerText = 'Incorrect'
     }
-  setTimeout(() => {
+  setTimeout(() => { //Sets a brief delay between questions so the user can see if their selection was correct or incorrect
     correctIncorrectText.innerText = ''
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
-      currentQuestionIndex++
-      setNextQuestion()
+      currentQuestionIndex++;
+      setNextQuestion();
       } else {
-      endQuiz()
+      endQuiz();
     }
   }, 1000)
 }
@@ -113,13 +106,11 @@ function setStatusClass(element, correct) {
 }
 
 function clearStatusClass(element) {
-  element.classList.remove('correct')
-  element.classList.remove('wrong')
+  element.classList.remove('correct');
+  element.classList.remove('wrong');
 }
 
-
-
-const questions = [
+const questions = [  //Questions and answers with boolean to determine if answer is correct or incorrect
     {
       question: 'What is 2 + 2?',
       answers: [
@@ -166,24 +157,20 @@ const questions = [
         ]
     }
 ]
-    function endQuiz() {
-        clearInterval(timer)
-        
-        questionContainer.innerText = `All done! Your final score is ${score}`
-        answerButtons.remove ('hide')
-        answerButtons.classList.add('hide')
-        timeRemainingBox.classList.add('hide')
-        startButton.classList.remove('hide')
-        nameForm.style.display = "block"
-}
-button3.addEventListener('click', displayHighscore)
 
-function displayHighscore (){
-  score.textContent = score
-  localStorage.setItem("score", score )
-  console.log (score)
-  viewHighScore()
+function endQuiz() { //Function to end quiz that stops timer, gives final score, and allows for name submission
+  clearInterval(timer);
+  questionContainer.innerText = `All done! Your final score is ${score}`;
+  answerButtons.remove ('hide');
+  nameForm.style.display = "block";
 }
-         
-        
 
+submitButton.addEventListener('click', displayHighscore); //Form submit button event listener
+var nameSubmission = document.getElementById('nameSubmission')
+function displayHighscore (){ //Logs score and puts it into local storage
+    let lastScore = {
+    Name: nameSubmission.value,
+    Score: score
+  }
+  localStorage.setItem("highscore", JSON.stringify(lastScore));
+}
