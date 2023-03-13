@@ -13,7 +13,6 @@ body {
     padding-right: 20px;
 }
 #score-container {
-
     color: red;
     text-align: right;
 }
@@ -39,9 +38,9 @@ button {
 }
 #nameForm {
     text-align: center;
-
 }
-a.button2 {
+/* Submit Button Style */
+a#submitButton {
     display: inline-block;
     padding: 0.5em 1em;
     margin: 0.5em;
@@ -53,5 +52,5 @@ a.button2 {
     text-decoration: none;
     font-size: 16px;
     cursor: pointer;
-  }
+}
   
