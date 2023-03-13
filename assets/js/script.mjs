@@ -1,3 +1,4 @@
+import {viewHighScore} from "./highscores.mjs";
 var intialInstructions = document.getElementById('initialInstructions')
 var startButton = document.getElementById('startButton')
 var questionContainer = document.getElementById('question-container')
@@ -9,6 +10,7 @@ var score =0
 var scoreTextBox = document.getElementById('score-container')
 var nameForm = document.getElementById('nameForm')
 var submitName = document.getElementById('submitName')
+var button3 = document.getElementById('button3')
 let shuffledQuestions, currentQuestionIndex, timer
 
 startButton.addEventListener('click', startQuiz)
@@ -173,6 +175,14 @@ const questions = [
         timeRemainingBox.classList.add('hide')
         startButton.classList.remove('hide')
         nameForm.style.display = "block"
+}
+button3.addEventListener('click', displayHighscore)
+
+function displayHighscore (){
+  score.textContent = score
+  localStorage.setItem("score", score )
+  console.log (score)
+  viewHighScore()
 }
          
         
