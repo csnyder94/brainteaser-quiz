@@ -16,25 +16,33 @@
     <p id="time-remaining">Time: 0</p> <!--Time remaining buttons set to 0.  Will change when timer starts in JS-->
 
     <section class="quiz-text"> <!--Section made to reference back in CSS-->
-        
+        <div id="score-container"> Score: 0 </div>
         <div id="quiz-container"> <!--Div made to reference back in JS-->
 
             <div id="question-container"></div> <!--Div made to reference back in JS-->
         
             <div id="answer-buttons"></div> <!--Div made to reference back in JS-->
-
+            <div id="correct-incorrect"></div>
         </div>
             
         <div id="initialInstructions"> <!--Div made to reference back in JS-->
 
             <h1> Brainteaser Quiz</h1>
 
-            <p><br>Try to answer the following BLANKBLANK-RELATED questions within the time limit. <br> Keep in mind that incorrect answers will penalize your score/time by 15 seconds!</p>
+            <p><br>Try to answer the following general knowledge questions within the time limit. <br> Keep in mind that incorrect answers will penalize your time by 10 seconds!</p>
 
             <button class ="button" id="startButton">Start Quiz</button> <!--Button Starts Quiz and timer-->
 
         </div>
     </section>
+<!-- COME BACK HERE AND FIX THE BELOW. ALSO FIX THE CSS -->
+    <form id="nameForm" style="display: none;" >
+        <label for="nameInput">Enter your name:</label>
+        <input type="text" id="nameInput" name="name">
+        <a href="highscores.html" class="button2">Submit</a>
+      </form>
+      
+
 
 
     <script src="./assets/js/script.js"></script> <!--Links JS-->
