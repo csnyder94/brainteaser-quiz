@@ -167,10 +167,13 @@ function endQuiz() { //Function to end quiz that stops timer, gives final score,
 
 submitButton.addEventListener('click', displayHighscore); //Form submit button event listener
 var nameSubmission = document.getElementById('nameSubmission')
-function displayHighscore (){ //Logs score and puts it into local storage
-    let lastScore = {
+
+function displayHighscore (){ //Logs score and puts it into local storage by an array
+  var highscoreTable2 = JSON.parse(localStorage.getItem("highscore")) || [];
+    let lastScore =  {
     Name: nameSubmission.value,
     Score: score
-  }
-  localStorage.setItem("highscore", JSON.stringify(lastScore));
+}
+  highscoreTable2.push(lastScore) 
+  localStorage.setItem("highscore", JSON.stringify(highscoreTable2));
 }
