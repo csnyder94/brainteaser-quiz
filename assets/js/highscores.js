@@ -1,6 +1,13 @@
-let lastScore = JSON.parse(localStorage.getItem("highscore"));  //Pulls score from local storage
-let lastScoreJS = document.querySelector(".lastScoreJS"); 
-lastScoreJS.innerHTML = '<h2>' + lastScore.Name + " " + lastScore.Score + '</h2>'; //displays name and highscore
+let lastScore = JSON.parse(localStorage.getItem("highscore"));  //Pulls score from local storage as an array
+
+let lastScoreJS = document.querySelector(".lastScoreJS");
+
+lastScore.forEach(score => {
+    var scoreH2 = document.createElement('h2');
+    scoreH2.textContent = `Name: ${score.Name}, Score: ${score.Score}`;
+    lastScoreJS.append(scoreH2);
+}); 
+
 var clearButton = document.getElementById('clearHighScores');
 var highscoreTable = document.getElementById('highscoreTable');
 
